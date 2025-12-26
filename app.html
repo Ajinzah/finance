@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Finance Planner | Login</title>
+
+<!-- Font & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+</style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white">
+
+<div class="w-full max-w-md bg-white/5 backdrop-blur rounded-2xl shadow-xl p-8">
+
+  <!-- HEADER -->
+  <div class="text-center mb-6">
+    <h1 class="text-2xl font-bold">Smart Finance Planner</h1>
+    <p class="text-sm text-gray-400 mt-1">Kelola keuanganmu dengan cerdas</p>
+  </div>
+
+  <!-- TABS -->
+  <div class="flex mb-6 bg-white/10 rounded-lg overflow-hidden">
+    <button id="loginTab" class="w-1/2 py-2 text-sm font-semibold bg-cyan-500 text-black">Login</button>
+    <button id="registerTab" class="w-1/2 py-2 text-sm font-semibold">Register</button>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="loginForm">
+    <div class="mb-4">
+      <label class="text-sm">Username</label>
+      <input id="loginUsername" class="w-full p-3 rounded-lg bg-black/40 border border-white/10 mt-1" placeholder="Username">
+    </div>
+
+    <div class="mb-6">
+      <label class="text-sm">Password</label>
+      <input id="loginPassword" type="password" class="w-full p-3 rounded-lg bg-black/40 border border-white/10 mt-1" placeholder="Password">
+    </div>
+
+    <button onclick="login()" class="w-full py-3 rounded-lg bg-cyan-500 hover:bg-cyan-600 text-black font-semibold">
+      Login
+    </button>
+  </div>
+
+  <!-- REGISTER -->
+  <div id="registerForm" class="hidden">
+    <div class="mb-3">
+      <label class="text-sm">Username</label>
+      <input id="regUsername" class="w-full p-3 rounded-lg bg-black/40 border border-white/10 mt-1">
+    </div>
+
+    <div class="mb-3">
+      <label class="text-sm">Email</label>
+      <input id="regEmail" type="email" class="w-full p-3 rounded-lg bg-black/40 border border-white/10 mt-1">
+    </div>
+
+    <div class="mb-5">
+      <label class="text-sm">Password</label>
+      <input id="regPassword" type="password" class="w-full p-3 rounded-lg bg-black/40 border border-white/10 mt-1">
+    </div>
+
+    <button onclick="register()" class="w-full py-3 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-black font-semibold">
+      Register
+    </button>
+  </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+const USER_KEY = 'sfp_user';
+
+/* TAB SWITCH */
+const loginTab = document.getElementById('loginTab');
+const registerTab = document.getElementById('registerTab');
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+
+loginTab.onclick = () => {
+  loginTab.classList.add('bg-cyan-500','text-black');
+  registerTab.classList.remove('bg-emerald-500','text-black');
+  loginForm.classList.remove('hidden');
+  registerForm.classList.add('hidden');
+};
+
+registerTab.onclick = () => {
+  registerTab.classList.add('bg-emerald-500','text-black');
+  loginTab.classList.remove('bg-cyan-500','text-black');
+  registerForm.classList.remove('hidden');
+  loginForm.classList.add('hidden');
+};
+
+/* REGISTER */
+function register() {
+  const username = regUsername.value.trim();
+  const email = regEmail.value.trim();
+  const password = regPassword.value;
+
+  if (!username || !email || !password) {
+    alert('Lengkapi semua data');
+    return;
+  }
+
+  const user = { username, email, password };
+  localStorage.setItem(USER_KEY, JSON.stringify(user));
+
+  alert('Registrasi berhasil, silakan login');
+  loginTab.click();
+}
+
+/* LOGIN */
+function login() {
+  const username = loginUsername.value.trim();
+  const password = loginPassword.value;
+
+  const user = JSON.parse(localStorage.getItem(USER_KEY) || '{}');
+
+  if (user.username !== username || user.password !== password) {
+    alert('Username atau password salah');
+    return;
+  }
+
+  window.location.href = 'index.html';
+}
+</script>
+
+</body>
+</html>

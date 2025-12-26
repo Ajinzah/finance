@@ -1,0 +1,200 @@
+
+  :root{
+    --bg: #0f1724;            /* page background for premium look */
+    --card: #0b1220;
+    --muted: #93a3b8;
+    --accent1: #0667d0;      /* blue */
+    --accent2: #06b6d4;      /* cyan */
+    --glass: rgba(255,255,255,0.04);
+  }
+  [data-theme="light"]{
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --muted: #6b7280;
+  }
+  html,body{height:100%}
+  body{
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background: linear-gradient(180deg,#07122b 0%, #071a2f 60%); /* dark gradient base */
+    color: #e6eef8;
+    transition: background .25s, color .25s;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* Light theme overrides */
+  [data-theme="light"] body {
+    background: linear-gradient(180deg,#f6f8fb 0%, #eef2ff 60%);
+    color: #0b1220;
+  }
+
+  /* NAV */
+  .nav-gradient {
+    background: linear-gradient(90deg,var(--accent1), var(--accent2));
+    box-shadow: 0 8px 30px rgba(2,6,23,0.45);
+  }
+  [data-theme="light"] .nav-gradient {
+    box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+  }
+
+  /* Cards */
+  .card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 10px 30px rgba(2,6,23,0.5);
+    backdrop-filter: blur(6px);
+    transition: transform .18s, box-shadow .18s;
+  }
+  [data-theme="light"] .card {
+    background: var(--card);
+    box-shadow: 0 8px 24px rgba(16,24,40,0.06);
+  }
+  .card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,23,0.6); }
+
+  .muted{ color: var(--muted); }
+  .tiny{ font-size:.85rem; color:var(--muted); }
+
+  /* accent pill */
+  .pill {
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:999px;
+    background: rgba(255,255,255,0.06);
+    color: #cfe9ff;
+    font-weight:600;
+    font-size:.8rem;
+  }
+  [data-theme="light"] .pill{ background: #eef2ff; color: #0b1220; }
+
+  /* chart container */
+  .chart-wrap{ height:320px; padding:14px; border-radius:12px; background: transparent; }
+
+  /* table */
+  .tx-table th, .tx-table td { padding:12px 14px; border-bottom:1px solid rgba(255,255,255,0.03); }
+  [data-theme="light"] .tx-table th, [data-theme="light"] .tx-table td { border-bottom:1px solid rgba(0,0,0,0.06); }
+
+  /* buttons */
+  .btn-primary {
+    background: linear-gradient(90deg,var(--accent2),var(--accent1));
+    color: white; padding:.55rem .9rem; border-radius:10px; font-weight:600;
+    box-shadow: 0 8px 22px rgba(6,103,208,0.18);
+  }
+  .btn-ghost { background: rgba(255,255,255,0.03); color: #dbeafe; padding:.45rem .8rem; border-radius:10px; }
+
+.section{
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 80px;
+}
+
+/* =================================================
+   THEME LIGHT – Smart Finance Planner
+================================================= */
+
+body[data-theme="light"] {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* NAVBAR */
+body[data-theme="light"] .nav-gradient {
+  background: linear-gradient(90deg, #ffffff, #f1f5f9);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+body[data-theme="light"] nav a {
+  color: #0f172a;
+}
+
+/* CARD */
+body[data-theme="light"] .card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* TEXT */
+body[data-theme="light"] .muted {
+  color: #64748b;
+}
+
+body[data-theme="light"] .tiny {
+  color: #475569;
+}
+
+/* INPUT & SELECT */
+body[data-theme="light"] input,
+body[data-theme="light"] select {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e5e7eb;
+}
+
+/* TABLE */
+body[data-theme="light"] table {
+  background: #ffffff;
+}
+
+body[data-theme="light"] thead {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+body[data-theme="light"] tbody tr {
+  border-color: #e5e7eb;
+}
+
+/* BUTTON */
+body[data-theme="light"] .btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+body[data-theme="light"] .btn-ghost {
+  color: #0f172a;
+}
+
+body[data-theme="light"] .btn-ghost:hover {
+  background: #e2e8f0;
+}
+
+/* PROFILE DROPDOWN */
+body[data-theme="light"] #profileMenu {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e5e7eb;
+}
+
+body[data-theme="light"] #profileMenu button:hover {
+  background: #f1f5f9;
+}
+
+/* STATUS COLOR */
+body[data-theme="light"] .text-pink-400 {
+  color: #db2777;
+}
+body[data-theme="light"] .text-emerald-400 {
+  color: #059669;
+}
+body[data-theme="light"] .text-yellow-400 {
+  color: #ca8a04;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+  /* responsive tweaks */
+  @media (max-width:1024px){
+    .chart-wrap{ height:260px }
+  }
+  @media (max-width:640px){
+    .card { padding:14px; }
+    .chart-wrap{ height:220px; }
+  }
