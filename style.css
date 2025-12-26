@@ -36,6 +36,17 @@
     box-shadow: 0 6px 18px rgba(16,24,40,0.06);
   }
 
+  /* Pastikan nav-gradient tidak menimpa warna mode gelap */
+#mobileMenu.nav-gradient {
+    background: linear-gradient(90deg,var(--accent1), var(--accent2));
+}
+
+/* Saat mode gelap aktif, paksa warna gelap untuk sidebar */
+.dark #mobileMenu {
+    background: #111827 !important; /* warna gray-900 */
+    color: white !important;
+}
+
   /* Cards */
   .card {
     background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));

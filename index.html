@@ -19,6 +19,12 @@
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <script>
+      tailwind.config = {
+        darkMode: 'class'
+      }
+    </script>
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
@@ -95,11 +101,11 @@
       <!-- MOBILE MENU -->
       <div
         id="mobileMenu"
-  class="
-    hidden md:hidden
-    bg-white text-gray-900 border-t border-gray-200
-    dark:bg-gray-900 dark:text-white dark:border-white/10
-  "
+ class="hidden md:hidden absolute right-0 top-16 z-50 transition-all duration-300 border-t 
+         bg-gradient-to-b from-white via-blue-100 to-cyan-200
+         /* Untuk Mode Gelap: Gradient tetap ada tapi lebih redup agar tidak menyilaukan */
+         dark:from-slate-800 dark:via-slate-900 dark:to-slate-950 text-gray-900 border-gray-200
+         dark:bg-gray-900 dark:text-white dark:border-white/10"
       >
         <div class="px-4 py-4 space-y-3 text-sm">
           <div class="border-b border-white/10 pb-3">
@@ -193,17 +199,17 @@
         </div>
       </section>
       <!-- Charts -->
-      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div class="card chart-wrap p-4">
-          <div class="flex justify-between items-center mb-3">
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div class="card chart-wrap p-6">
+          <div class="flex justify-between items-center mb-6">
             <div><strong>Pemasukan — Bulanan (Line)</strong></div>
             <div class="tiny muted">Per hari (1–31)</div>
           </div>
           <canvas id="incomeLine"></canvas>
         </div>
 
-        <div class="card chart-wrap p-4">
-          <div class="flex justify-between items-center mb-3">
+        <div class="card chart-wrap p-6">
+          <div class="flex justify-between items-center mb-6">
             <div><strong>Pengeluaran — Bulanan (Bar)</strong></div>
             <div class="tiny muted">Per hari (1–31)</div>
           </div>
@@ -212,7 +218,7 @@
       </section>
 
       <!-- Anggaran -->
-      <section id="budget" class="card p-6 mb-8">
+      <section id="budget" class="card p-8 mb-8">
         <h3 class="text-lg font-semibold mb-4">Anggaran Bulanan</h3>
 
         <div class="grid md:grid-cols-4 gap-4 mb-4">
@@ -1537,11 +1543,31 @@ document.getElementById("resetBtnMobile").onclick = resetAll;
 
       // hp
       const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-      const mobileMenu = document.getElementById("mobileMenu");
+const mobileMenu = document.getElementById("mobileMenu");
 
-      mobileMenuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-      });
+// 1. Toggle menu saat tombol hamburger diklik
+mobileMenuBtn.addEventListener("click", (e) => {
+  e.stopPropagation(); // Mencegah klik tombol memicu event "klik di luar"
+  mobileMenu.classList.toggle("hidden");
+});
+
+// 2. Tutup otomatis saat link di dalam menu diklik
+const mobileLinks = mobileMenu.querySelectorAll("a, button");
+mobileLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.add("hidden");
+  });
+});
+
+// 3. Tutup otomatis jika pengguna mengklik di luar menu (Area gelap/body)
+document.addEventListener("click", (e) => {
+  // Jika menu tidak tersembunyi DAN yang diklik bukan bagian dari menu/tombol
+  if (!mobileMenu.classList.contains("hidden") && 
+      !mobileMenu.contains(e.target) && 
+      !mobileMenuBtn.contains(e.target)) {
+    mobileMenu.classList.add("hidden");
+  }
+});
 
       // isi user
       document.getElementById("mobileUserName").innerText = user.username;
